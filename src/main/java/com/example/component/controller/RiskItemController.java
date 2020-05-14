@@ -9,6 +9,9 @@ import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 @RestController
 public class RiskItemController {
 
@@ -41,9 +44,11 @@ public class RiskItemController {
             System.out.println(object);
             JsonElement positiveId = object.get("positive_id");
             JsonElement relativeId = object.get("relative_id");
+            JsonElement resultTime = object.get("result_time");
 
             System.out.println(positiveId);
             System.out.println(relativeId);
+            System.out.println(resultTime);
 
             JsonArray relativeIdAsJsonArray = relativeId.getAsJsonArray();
             for (JsonElement jsonElement1 : relativeIdAsJsonArray) {
@@ -57,13 +62,13 @@ public class RiskItemController {
                 item.setPositiveId(positiveId.getAsString());
                 item.setScore(score.getAsString());
                 item.setUserId(userId.getAsString());
-                item.setCreateTime(String.valueOf(System.currentTimeMillis()));
-                item.setUpdateTime(String.valueOf(System.currentTimeMillis()));
-                item.setResultTime(String.valueOf(System.currentTimeMillis()));
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                String format = simpleDateFormat.format(Long.valueOf(resultTime.getAsString()));
+//                item.setCreateTime(Timestamp.valueOf(String.valueOf(System.currentTimeMillis())));
+//                item.setUpdateTime(Timestamp.valueOf(String.valueOf(System.currentTimeMillis())));
+                item.setResultTime(Timestamp.valueOf(format));
                 insertItem(item);
-
             }
-            System.out.println("=========================");
         }
         return "";
     }
@@ -71,6 +76,13 @@ public class RiskItemController {
     public RiskItem insertItem(RiskItem riskItem){
         RiskItem item = riskItemRepository.saveAndFlush(riskItem);
         return item;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(System.currentTimeMillis());
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        System.out.println(simpleDateFormat.format(Long.valueOf("1589441843916")));
     }
 
 }

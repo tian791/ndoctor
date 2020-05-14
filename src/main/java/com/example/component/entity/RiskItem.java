@@ -1,6 +1,7 @@
 package com.example.component.entity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "ndoctor_risk_item")
@@ -19,14 +20,14 @@ public class RiskItem {
     @Column(name = "positive_id")
     private String positiveId;
 
-    @Column(name = "create_at")
-    private String createTime;
+    @Column(name = "create_at",columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Timestamp createTime;
 
-    @Column(name = "update_at")
-    private String updateTime;
+    @Column(name = "update_at",columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Timestamp updateTime;
 
     @Column(name = "effect_at")
-    private String resultTime;
+    private Timestamp resultTime;
 
     public Integer getId() {
         return id;
@@ -60,27 +61,27 @@ public class RiskItem {
         this.positiveId = positiveId;
     }
 
-    public String getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 
-    public String getResultTime() {
+    public Timestamp getResultTime() {
         return resultTime;
     }
 
-    public void setResultTime(String resultTime) {
+    public void setResultTime(Timestamp resultTime) {
         this.resultTime = resultTime;
     }
 
