@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://91.201.5.146:3306/ndoctor?useSSL=false&useUnicode=yes&characterEncoding=utf8
+    username: root
+    password: 1qaz@WSX#%fjdgkadjg
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
