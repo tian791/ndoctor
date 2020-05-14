@@ -26,7 +26,7 @@ public class RiskItem {
     @Column(name = "update_at",columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp updateTime;
 
-    @Column(name = "effect_at")
+    @Column(name = "effect_at",columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp resultTime;
 
     public Integer getId() {
